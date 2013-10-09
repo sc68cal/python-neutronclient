@@ -21,9 +21,20 @@ class DeleteQoS(neutronV20.DeleteCommand):
     resource = 'qos'
     log = logging.getLogger(__name__ + '.DeleteQoS')
 
+
 class UpdateQoS(neutronV20.UpdateCommand):
     resource = 'qos'
     log = logging.getLogger(__name__ + '.UpdateQoS')
+
+    def args2body(self, parsed_args):
+        body = {self.resource: {}}
+        body[self.resource]['policies'] = {}
+        if parsed_args.policies:
+            for parg in parsed_args.policies:
+                args = parg.split('=')
+                body[self.resource]['policies'][args[0]] = args[1]
+        return body
+
 
 class CreateQoS(neutronV20.CreateCommand):
     resource = 'qos'
