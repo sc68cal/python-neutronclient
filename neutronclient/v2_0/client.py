@@ -1126,6 +1126,11 @@ class Client(object):
     def show_qos(self, qos, **_params):
         return self.get(self.qoses_path % (qos), params=_params)
 
+    @APIParamsCall
+    def update_qos(self, qos, body=None):
+        """Updates a firewall."""
+        return self.put(self.qos_path % (qos), body=body)
+
     def __init__(self, **kwargs):
         """Initialize a new client for the Neutron v2.0 API."""
         super(Client, self).__init__()

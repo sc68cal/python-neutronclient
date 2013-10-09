@@ -21,6 +21,9 @@ class DeleteQoS(neutronV20.DeleteCommand):
     resource = 'qos'
     log = logging.getLogger(__name__ + '.DeleteQoS')
 
+class UpdateQoS(neutronV20.UpdateCommand):
+    resource = 'qos'
+    log = logging.getLogger(__name__ + '.UpdateQoS')
 
 class CreateQoS(neutronV20.CreateCommand):
     resource = 'qos'

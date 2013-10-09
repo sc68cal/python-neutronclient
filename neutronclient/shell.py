@@ -168,8 +168,10 @@ COMMAND_V2 = {
         lb_healthmonitor.DisassociateHealthMonitor
     ),
     'qos-create': qos.CreateQoS,
+    'qos-delete': qos.DeleteQoS,
     'qos-list': qos.ListQoS,
     'qos-show': qos.ShowQoS,
+    'qos-update': qos.UpdateQoS,
     'queue-create': nvp_qos_queue.CreateQoSQueue,
     'queue-delete': nvp_qos_queue.DeleteQoSQueue,
     'queue-show': nvp_qos_queue.ShowQoSQueue,
