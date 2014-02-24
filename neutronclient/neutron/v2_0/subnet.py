@@ -117,6 +117,14 @@ class CreateSubnet(neutronV20.CreateCommand):
             action='store_true',
             help=_('Disable DHCP for this subnet'))
         parser.add_argument(
+            '--ipv6-ra-mode',
+            choices=['dhcpv6-stateful', 'dhcpv6-stateless', 'slaac'],
+            help=_('IPv6 RA mode'))
+        parser.add_argument(
+            '--ipv6-address-mode',
+            choices=['dhcpv6-stateful', 'dhcpv6-stateless', 'slaac'],
+            help=_('IPv6 address mode'))
+        parser.add_argument(
             'network_id', metavar='NETWORK',
             help=_('Network id or name this subnet belongs to'))
         parser.add_argument(
@@ -144,6 +152,10 @@ class CreateSubnet(neutronV20.CreateCommand):
             body['subnet'].update({'name': parsed_args.name})
         if parsed_args.disable_dhcp:
             body['subnet'].update({'enable_dhcp': False})
+        if parsed_args.ipv6_ra_mode:
+            body['subnet']['ipv6_ra_mode'] = parsed_args.ipv6_ra_mode
+        if parsed_args.ipv6_address_mode:
+            body['subnet']['ipv6_address_mode'] = parsed_args.ipv6_address_mode
         if parsed_args.allocation_pools:
             body['subnet']['allocation_pools'] = parsed_args.allocation_pools
         if parsed_args.host_routes:
